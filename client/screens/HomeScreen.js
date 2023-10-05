@@ -20,6 +20,9 @@ const HomeScreen = () => {
                     <Text className='text-orange-400'>Cape Town,WC</Text>
                 </View>
             </View>
+            <View className="p-3 bg-teal-300 ml-1 rounded-full">
+                <Feather name="sliders" size={27} color="white" />
+            </View>
         </View>
         </SafeAreaView>
     );
