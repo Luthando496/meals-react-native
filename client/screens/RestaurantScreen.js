@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import DishRow from "../components/DishRow";
 import CartIcon from "../components/CartIcon";
+import { StatusBar } from "expo-status-bar";
 
 const RestaurantScreen = () => {
   const { params } = useRoute();
@@ -12,8 +12,9 @@ const RestaurantScreen = () => {
   let item = params;
 
   return (
-    <SafeAreaView>
+    // <SafeAreaView>
     <View>
+    <StatusBar  style='light' />
     <CartIcon />
       <ScrollView>
         <View className="relative">
@@ -72,7 +73,7 @@ const RestaurantScreen = () => {
         </View>
     </ScrollView>
     </View>
-    </SafeAreaView>
+    // {/* </SafeAreaView> */}
   );
 };
 
