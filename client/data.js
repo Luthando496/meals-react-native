@@ -107,6 +107,7 @@ export const featured = {
                    price: 10,
                    image:  require('./assets/images/pizzaImage.jpg')
                 },
+                
             ]
     
         },

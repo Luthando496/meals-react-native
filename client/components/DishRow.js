@@ -1,10 +1,25 @@
 import React from'react';
 import {View,Text,Image, TouchableOpacity} from 'react-native';
 import { Feather } from "@expo/vector-icons";
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeToCart } from '../slices/cartSlice';
 
 
 
 const DishRow = ({dish}) => {
+    const dispatch = useDispatch()
+    const itemsCart = useSelector(state => state.cart.items)
+    const totalItems = itemsCart.filter(item => item.id === dish.id).length
+
+    const handleIncrease =()=>{
+        dispatch(addToCart({...dish}))
+
+    }
+
+    const handleDecrease =()=>{
+        dispatch(removeToCart({id:dish.id}))
+
+    }
 
     return (
         <View style={{elevation:20}} className='flex-row items-center p-3 rounded-3xl bg-white shadow-3xl mb-3 mx-2'>
@@ -17,11 +32,11 @@ const DishRow = ({dish}) => {
                 <View className="flex-row justify-between pl-3 items-center">
                     <Text className="text-2xl font-bold capitalize">R{dish.price}</Text>
                     <View className="flex-row items-center mr-4 space-x-3">
-                        <TouchableOpacity className='p-1 rounded-full bg-yellow-500'>
+                        <TouchableOpacity disabled={!totalItems} onPress={handleDecrease} className='p-1 rounded-full bg-yellow-500'>
                             <Feather name='minus' color='white' size={25}/>
                         </TouchableOpacity>
-                        <Text>2</Text>
-                        <TouchableOpacity className='p-1 rounded-full bg-yellow-500'>
+                        <Text>{totalItems}</Text>
+                        <TouchableOpacity onPress={handleIncrease} className='p-1 rounded-full bg-yellow-500'>
                             <Feather name='plus' color='white' size={25}/>
                         </TouchableOpacity>
                     </View>

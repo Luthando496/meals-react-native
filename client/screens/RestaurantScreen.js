@@ -1,15 +1,24 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import DishRow from "../components/DishRow";
 import CartIcon from "../components/CartIcon";
 import { StatusBar } from "expo-status-bar";
+import { useDispatch } from "react-redux";
+import { setRestaurant } from "../slices/restaurantSlice";
 
 const RestaurantScreen = () => {
   const { params } = useRoute();
   const navigate = useNavigation();
   let item = params;
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+  dispatch(setRestaurant({...item}))
+    
+  }, [dispatch])
+  
 
   return (
     // <SafeAreaView>
